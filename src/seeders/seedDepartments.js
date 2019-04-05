@@ -10,18 +10,17 @@ const seeder = () => {
     try {
       const result = await Department.findOne({ name: department.name });
       if (!result) {
-        const lec = new Department({
+        new Department({
           name: department.name,
-        });
-        lec.save((err) => {
+        }).save((err) => {
           if (err) {
-            console.log('Error seeding course: ', department.name);
+            console.log('Error seeding department: ', department.name);
           }
-          console.log('Success seeding course: ', department.name);
+          console.log('Success seeding department: ', department.name);
         });
       }
     } catch (err) {
-      console.log('Error seeding course: ', department.name);
+      console.log('Error seeding department: ', department.name);
     }
   });
 };

@@ -1,8 +1,8 @@
 import Course from '../models/course.model';
 
 const courses = [
-  { name: 'Computer Science 101' },
-  { name: 'Bio Science 202' },
+  { name: 'Computer Science 101', department: 'Computer Science' },
+  { name: 'Bio Science 202', department: 'Bio Tech' },
 ];
 
 const seeder = () => {
@@ -12,6 +12,7 @@ const seeder = () => {
       if (!result) {
         new Course({
           name: course.name,
+          department: course.department,
         }).save((err) => {
           if (err) {
             console.log('Error seeding course: ', course.name);

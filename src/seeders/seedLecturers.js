@@ -1,8 +1,8 @@
 import Lecturer from '../models/lecturer.model';
 
 const lecturers = [
-  { name: 'Tunmise' },
-  { name: 'Osifo' },
+  { name: 'Tunmise', department: 'Computer Science' },
+  { name: 'Osifo', department: 'Bio Tech' },
 ];
 
 const seeder = () => {
@@ -12,6 +12,7 @@ const seeder = () => {
       if (!result) {
         const lec = new Lecturer({
           name: lecturer.name,
+          department: lecturer.department,
         });
         lec.save((err) => {
           if (err) {

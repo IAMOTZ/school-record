@@ -1,7 +1,9 @@
-import students from './students';
+import student from './student';
+import getDepartments from './getDepartments';
+import './query';
 
 export default {
-  enrollStudent: students.enrollStudents,
-  listStudents: students.listStudents,
-  listDepartments: () => {},
+  enrollStudent: student.enrollStudents,
+  listStudents: student.listStudents,
+  listDepartments: getDepartments,
 };
