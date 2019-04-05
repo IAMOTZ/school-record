@@ -8,10 +8,8 @@ import Student from '../models/student.model';
 const query = async () => {
   try {
     const allCompSciCourse = await Course.find({ department: 'Computer Science' });
-    const result = [];
-    for (let i = 0; i < allCompSciCourse.length; i += 1) {
-      result.push(await Student.find({ courses: allCompSciCourse[i]._id }));
-    }
+    const queryString = allCompSciCourse.map(course => ({ courses: course._id }));
+    const result = await Student.find({ $or: queryString });
     console.log('***', result);
   } catch (err) {
     console.log('***Error executing query', err);
