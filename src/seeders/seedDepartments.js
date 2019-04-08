@@ -1,28 +1,37 @@
 import Department from '../models/department.model';
 
 const departments = [
-  { name: 'Computer Science' },
-  { name: 'Bio Tech' },
+  {
+    name: 'Computer Science',
+    lecturers: [
+      { name: 'Tunmise' },
+      { name: 'Osifo' },
+    ],
+  },
+  {
+    name: 'Bio Tech',
+    lecturers: [
+      { name: 'Demola' },
+      { name: 'Seni' },
+    ],
+  },
 ];
 
-const seeder = () => {
-  departments.forEach(async (department) => {
-    try {
-      const result = await Department.findOne({ name: department.name });
-      if (!result) {
-        new Department({
-          name: department.name,
-        }).save((err) => {
-          if (err) {
-            console.log('Error seeding department: ', department.name);
-          }
-          console.log('Success seeding department: ', department.name);
-        });
-      }
-    } catch (err) {
-      console.log('Error seeding department: ', department.name);
+const seedDepartment = async (department) => {
+  try {
+    const { name, lecturers } = department;
+    const result = await Department.findOne({ name });
+    if (!result) {
+      await new Department({ name, lecturers }).save();
+      console.log('Success seeding department: ', department.name);
     }
-  });
+  } catch (err) {
+    console.log('Error seeding department: ', department.name);
+  }
 };
 
-export default seeder;
+export default async () => {
+  const seedArray = [];
+  departments.forEach(department => seedArray.push(seedDepartment(department)));
+  await Promise.all(seedArray);
+};

@@ -2,10 +2,16 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const DepartmentSchema = new Schema({
+const LecturerSchema = new Schema({
   name: { type: String, required: true },
 });
 
+const DepartmentSchema = new Schema({
+  name: { type: String, required: true },
+  lecturers: [LecturerSchema],
+  students: [{ type: Schema.Types.ObjectId, ref: 'Student' }],
+  courses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
+});
 
-// Export the model
-module.exports = mongoose.model('Department', DepartmentSchema);
+
+export default mongoose.model('Department', DepartmentSchema);
