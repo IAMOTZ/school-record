@@ -5,7 +5,7 @@ import query from './query';
 
 export default {
   createStudent: student.createStudent,
-  enrollStudent: student.enrollStudents,
+  enrollStudent: student.enrollStudent,
   listStudents: student.listStudents,
   createCourse: course.createCourse,
   listDepartments: getDepartments,

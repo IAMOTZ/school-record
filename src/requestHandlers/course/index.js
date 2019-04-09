@@ -1,18 +1,10 @@
-import Course from '../models/course.model';
-import Department from '../models/department.model';
-
+import Course from '../../models/course.model';
+import helpers from './helpers';
 
 const createCourse = async (req, res) => {
   const { name, departmentId } = req.body;
-  // @TODO Add validation here for name and departmentId
+  const { department } = res.locals;
   try {
-    const department = await Department.findById(departmentId);
-    if (!department) {
-      return res.status(400).json({
-        success: false,
-        message: 'Department does not exist',
-      });
-    }
     const course = await new Course({ name, departmentId }).save();
     department.courses.push(course.id);
     await department.save();
@@ -29,4 +21,5 @@ const createCourse = async (req, res) => {
   }
 };
 
-export default { createCourse };
+const { validation } = helpers;
+export default { createCourse: [...validation.createCourse, createCourse] };
