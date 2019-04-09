@@ -13,6 +13,6 @@ router.post('/create-course', requestHandlers.createCourse);
 
 router.get('/list-departments', requestHandlers.listDepartments);
 
-router.get('query', requestHandlers.query);
+router.get('/query', requestHandlers.query);
 
 export default router;
