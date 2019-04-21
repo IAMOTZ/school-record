@@ -1,4 +1,5 @@
 import Department from '../models/department.model';
+import logger from '../logger';
 
 const departments = [
   {
@@ -23,10 +24,10 @@ const seedDepartment = async (department) => {
     const result = await Department.findOne({ name });
     if (!result) {
       await new Department({ name, lecturers }).save();
-      console.log('Success seeding department: ', department.name);
+      logger.info('Success seeding department: ', department.name);
     }
   } catch (err) {
-    console.log('Error seeding department: ', department.name);
+    logger.error('Error seeding department: ', department.name);
   }
 };
 

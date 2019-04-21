@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import Student from '../../models/student.model';
 import Course from '../../models/course.model';
 import Department from '../../models/department.model';
+import logger from '../../logger';
 
 const validation = {
   createStudent: [
@@ -24,6 +25,7 @@ const validation = {
     async (req, res, next) => {
       const { name, departmentId } = req.body;
       const student = await Student.findOne({ name: new RegExp(name, 'i') });
+      logger.info('Checking if a student with the given name already exist');
       if (student) {
         return res.status(400).json({
           success: false,
@@ -31,6 +33,7 @@ const validation = {
         });
       }
       const department = await Department.findById(departmentId);
+      logger.info('Checking if the chosen department exist');
       if (!department) {
         return res.status(400).json({
           success: false,
@@ -61,6 +64,7 @@ const validation = {
       const { courseId } = req.body;
       const { id: studentId } = req.params;
       const student = await Student.findById(studentId);
+      logger.info('Checking if the given student exist');
       if (!student) {
         return res.status(400).json({
           success: false,
@@ -68,6 +72,7 @@ const validation = {
         });
       }
       const course = Course.findById(courseId);
+      logger.info('Checking if the given course exist');
       if (!course) {
         return res.status(400).json({
           success: false,

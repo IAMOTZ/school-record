@@ -30,7 +30,8 @@
     "express-validator": "^5.3.1",
     "mongoose": "^5.4.22",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "simple-node-logger": "^18.12.22"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

@@ -2,6 +2,7 @@ import { body, validationResult } from 'express-validator/check';
 import mongoose from 'mongoose';
 import Course from '../../models/course.model';
 import Department from '../../models/department.model';
+import logger from '../../logger';
 
 const validation = {
   createCourse: [
@@ -22,6 +23,7 @@ const validation = {
     async (req, res, next) => {
       const { name, departmentId } = req.body;
       const course = await Course.findOne({ name: new RegExp(name, 'i') });
+      logger.info('Checking if a course with the given name already exist');
       if (course) {
         return res.status(400).json({
           success: false,
@@ -29,6 +31,7 @@ const validation = {
         });
       }
       const department = await Department.findById(departmentId);
+      logger.info('Checking if the given department exist');
       if (!department) {
         return res.status(400).json({
           success: false,
