@@ -1,18 +1,19 @@
 import express from 'express';
-import requestHandlers from './requestHandlers';
+import controllers from './controllers';
 
 const router = express.Router();
 
-router.post('/create-student', requestHandlers.createStudent);
+router.post('/students', controllers.createStudent);
 
-router.post('/enroll-student', requestHandlers.enrollStudent);
+router.put('/students/:id', controllers.enrollStudent);
 
-router.get('/list-students', requestHandlers.listStudents);
+router.get('/students', controllers.getStudents);
 
-router.post('/create-course', requestHandlers.createCourse);
+router.post('/courses', controllers.createCourse);
 
-router.get('/list-departments', requestHandlers.listDepartments);
+router.get('/departments', controllers.getDepartments);
 
-router.get('/query', requestHandlers.query);
+// The route below is just to demo the query that was included in the requirement specification.
+router.get('/query', controllers.query);
 
 export default router;

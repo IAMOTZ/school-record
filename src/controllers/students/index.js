@@ -28,7 +28,7 @@ const enrollStudent = async (req, res) => {
   }
 };
 
-const listStudents = async (req, res) => {
+const getStudents = async (req, res) => {
   try {
     const students = await Student.find().populate('courses');
     return res.status(200).json({
@@ -45,5 +45,5 @@ const { validation } = helpers;
 export default {
   createStudent: [...validation.createStudent, createStudent],
   enrollStudent: [...validation.enrollStudent, enrollStudent],
-  listStudents,
+  getStudents,
 };

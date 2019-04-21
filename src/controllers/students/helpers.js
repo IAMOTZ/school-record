@@ -1,4 +1,4 @@
-import { body, validationResult } from 'express-validator/check';
+import { body, validationResult, param } from 'express-validator/check';
 import mongoose from 'mongoose';
 import Student from '../../models/student.model';
 import Course from '../../models/course.model';
@@ -42,7 +42,7 @@ const validation = {
     },
   ],
   enrollStudent: [
-    body('studentId', 'studentId is not valid')
+    param('id', 'student ID is not valid')
       .isString().custom(value => mongoose.Types.ObjectId.isValid(value)),
     body('courseId', 'courseId is not valid')
       .isString().custom(value => mongoose.Types.ObjectId.isValid(value)),
@@ -58,7 +58,8 @@ const validation = {
       return next();
     },
     async (req, res, next) => {
-      const { studentId, courseId } = req.body;
+      const { courseId } = req.body;
+      const { id: studentId } = req.params;
       const student = await Student.findById(studentId);
       if (!student) {
         return res.status(400).json({
