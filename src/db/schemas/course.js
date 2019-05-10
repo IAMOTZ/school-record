@@ -7,4 +7,4 @@ const CourseSchema = new Schema({
   departmentId: { type: Schema.Types.ObjectId, ref: 'Department' },
 });
 
-export default mongoose.model('Course', CourseSchema);
+export default CourseSchema;
