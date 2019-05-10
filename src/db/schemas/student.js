@@ -8,4 +8,4 @@ const StudentSchema = new Schema({
   courses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
 });
 
-export default mongoose.model('Student', StudentSchema);
+export default StudentSchema;
