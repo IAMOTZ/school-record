@@ -1,12 +1,11 @@
-import utils from '../../utils';
-import services from '../../services';
+import utils from '../../../utils';
+import db from '../db';
 
-const { departmentService } = services;
 const { logger } = utils;
 
 const getDepartments = async (req, res) => {
   try {
-    const departments = await departmentService.getDepartments();
+    const departments = await db.department.getAllDepartments({ includeStudents: true });
     logger.info('Successfully fetched all departments info from DB');
     return res.status(200).json({ success: true, data: departments });
   } catch (err) {

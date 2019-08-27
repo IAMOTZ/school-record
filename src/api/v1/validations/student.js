@@ -1,6 +1,6 @@
 import { body, validationResult, param } from 'express-validator/check';
-import utils from '../../utils';
-import db from '../../db';
+import utils from '../../../utils';
+import db from '../db';
 
 const { logger } = utils;
 

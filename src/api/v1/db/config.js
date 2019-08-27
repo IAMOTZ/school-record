@@ -3,7 +3,6 @@ import dotEnv from 'dotenv';
 dotEnv.config();
 
 export default {
-  port: process.env.PORT,
   development: {
     dbUrl: process.env.DB_DEV_URL,
   },

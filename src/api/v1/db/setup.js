@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import config from '../config';
-import utils from '../utils';
+import config from './config';
+import utils from '../../../utils';
 
 const { logger } = utils;
 const currentEnv = process.env.NODE_ENV || 'development';
